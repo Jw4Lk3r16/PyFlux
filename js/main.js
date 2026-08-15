@@ -1,6 +1,3 @@
-// main.js
-// PyFlux docs — page loader, history, nav state, responsive toggle
-
 (function () {
   const DEFAULT_PAGE = 'introduction';
   const PAGES_DIR = 'pages';
