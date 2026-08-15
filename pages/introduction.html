@@ -1,0 +1,96 @@
+<!-- pages/introduction.html -->
+<section class="header">
+  <div class="title">
+    <h2>Introduction</h2>
+    <p>PyFlux is a small, focused programming language designed to express Fluxer automation and workflows clearly and safely.</p>
+  </div>
+  <div class="kv">
+    <span class="badge">v0.1 • Draft</span>
+  </div>
+</section>
+
+<article>
+  <h1>What is PyFlux</h1>
+
+  <p>
+    PyFlux is a domain-specific language (DSL) for writing concise automation scripts that map directly to Fluxer actions.
+    It is intentionally small, easy to read, and designed to be embedded in tools or executed inside a sandboxed runtime.
+  </p>
+
+  <blockquote>
+    <p><strong>Design note:</strong> "The signature is a two‑tone flowing gradient (teal → violet) used sparingly as a current that marks where you are and what matters — the active page, a heading rule, a quote's spine, the scrollbar." — design intent</p>
+    <p><em>Core palette — deep indigo-ink, not flat black.</em></p>
+  </blockquote>
+
+  <h2>Goals</h2>
+  <ul>
+    <li>Readable syntax that is easy to learn for Python users.</li>
+    <li>Deterministic runtime with clear sandboxing rules.</li>
+    <li>Small standard library focused on Fluxer actions (send, wait, upload, channel ops).</li>
+    <li>Static analysis friendly so editors can provide linting and autocomplete.</li>
+  </ul>
+
+  <h2>Quick Example</h2>
+  <p>Here is a minimal PyFlux script that sends two messages with a pause between them.</p>
+
+  <pre><code class="language-python">
+# hello.pf — PyFlux example
+channel "general" {
+    send "Hello, PyFlux!"
+    wait 2s
+    send "This message was sent by a PyFlux script."
+}
+  </code></pre>
+
+  <h2>How to run a script (local)</h2>
+  <p>At the moment, PyFlux is distributed as a small interpreter that accepts a script file and executes it against a configured Fluxer endpoint.</p>
+
+  <pre><code class="language-bash">
+# run a script locally (example)
+pyflux run hello.pf --token YOUR_TOKEN --endpoint https://fluxer.example/api
+  </code></pre>
+
+  <h2>File structure</h2>
+  <p>Keep scripts small and modular. Recommended layout for a project:</p>
+
+  <pre><code class="language-bash">
+project/
+├─ scripts/
+│  ├─ hello.pf
+│  └─ deploy.pf
+├─ libs/
+│  └─ utils.pf
+└─ pyflux.toml
+  </code></pre>
+
+  <h2>Language overview</h2>
+  <p>PyFlux focuses on a few core constructs:</p>
+  <ul>
+    <li><strong>channel</strong> — scope actions to a channel</li>
+    <li><strong>send</strong> — send a message</li>
+    - <strong>wait</strong> — pause execution (time units supported: <code>s</code>, <code>ms</code>)</li>
+    <li><strong>define</strong> — variables and simple functions</li>
+    <li><strong>if / loop</strong> — basic control flow</li>
+  </ul>
+
+  <h2>Next steps</h2>
+  <p>From here we should:</p>
+  <ol>
+    <li>Finalize the language grammar (syntax.md).</li>
+    <li>Implement the lexer & parser (lexer/, parser/).</li>
+    <li>Ship a minimal interpreter and runtime (interpreter/).</li>
+    <li>Document the standard library and examples (standard-library.html, examples.html).</li>
+  </ol>
+
+  <h2>Links</h2>
+  <ul>
+    <li><a href="?page=syntax" data-page="syntax">Syntax reference</a></li>
+    <li><a href="?page=standard-library" data-page="standard-library">Standard library</a></li>
+    <li><a href="?page=examples" data-page="examples">Examples</a></li>
+    <li><a href="?page=runtime" data-page="runtime">Runtime & sandbox</a></li>
+  </ul>
+
+  <div class="footer">
+    <p>Contributions welcome — open an issue or a PR on the repository. This documentation is a living draft.</p>
+  </div>
+</article>
